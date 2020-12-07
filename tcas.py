@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as ps
 import pickle
-import sklearn
 
 st.write(""" 
 
@@ -85,9 +84,9 @@ st.subheader('Pre-Processed Input:')
 st.write(X)
 
 # -- Reads the saved normalization model
-load_sc = pickle.load(open('normalization.pkl', 'rb'))
+load_nor = pickle.load(open('normalization.pkl', 'rb'))
 #Apply the normalization model to new data
-X = load_sc.transform(X)
+X = load_nor.transform(X)
 
 # -- Display normalized new data:
 st.subheader('Normalized Input:')
