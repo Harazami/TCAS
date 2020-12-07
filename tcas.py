@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as ps
-import pickle 
+import pickle
+import sklearn
 
 st.write(""" 
 
