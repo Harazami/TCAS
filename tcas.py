@@ -1,6 +1,13 @@
 import streamlit as st
 import pandas as ps
 import pickle 
+import xlrd
+file_location="tcas.xlsx"
+workbook=xlrd.open_workbook(file_location)
+sheet=workbook.sheet_by_index(0)
+row=0
+column=0
+print(sheet.cell.value(0))
 
 st.write(""" 
 
