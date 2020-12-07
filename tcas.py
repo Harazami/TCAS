@@ -62,7 +62,7 @@ st.write(df)
 # Combines user input data with sample dataset
 # The sample data contains unique values for each nominal features
 # This will be used for the One-hot encoding
-data_sample = ps.read_excel('tcas.csv')
+data_sample = ps.read_csv('tcas.csv')
 df = ps.concat([df, data_sample],axis=0)
 
 #One-hot encoding for nominal features
