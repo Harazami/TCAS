@@ -62,7 +62,7 @@ st.write(df)
 # Combines user input data with sample dataset
 # The sample data contains unique values for each nominal features
 # This will be used for the One-hot encoding
-data_sample = ps.read_csv('tcas.csv')
+data_sample = ps.read_csv('data_knn.csv')
 df = ps.concat([df, data_sample],axis=0)
 
 #One-hot encoding for nominal features
@@ -71,13 +71,6 @@ cat_data = ps.get_dummies(df[['StudentType']])
 #Combine all transformed features together
 X = ps.concat([cat_data, df], axis=1)
 X = X[:1] # Select only the first row (the user input data)
-
-#Drop un-used feature
-X = X.drop(columns=['StudentType','Sex','AcademicYear','AcademicSemester','PrefixName','FacultyID','FacultyName','DepartmentCode','DepartmentName','MajorName',
-'EntryTypeID','EntryTypeName','EntryGroupID','EntryGroupName','LevelID','LevelName','LevelNameEng','ApplicationDate','EntryGPA','HomeRegion','StudentTH',
-'Country','SchoolName','SchoolProvince','SchoolRegion','SchoolRegionName','SchoolRegionNameEng','NationName','ReligionName','ProvinceNameEng','GPAX','GPA_Eng','GPA_Math','GPA_Sci','GPA_Sco',
-'Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8','Q9','Q10','Q11','Q12','Q13','Q14','Q15','Q16','Q17','Q18','Q19','Q20','Q21','Q22','Q23','Q24','Q25','Q26','Q27',
-'Q28','Q29','Q30','Q31','Q32','Q33','Q34','Q35','Q36','Q37','Q38','Q39','Q40','Q41','Q42','Status'])
 
 # -- Display pre-processed new data:
 st.subheader('Pre-Processed Input:')
