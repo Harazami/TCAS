@@ -69,26 +69,29 @@ df = ps.concat([df, data_sample],axis=0)
 cat_data = ps.get_dummies(df[['StudentType']])
 
 #Combine all transformed features together
-X = ps.concat([cat_data, df], axis=1)
-X = X[:1] # Select only the first row (the user input data)
+X_new = ps.concat([cat_data, df], axis=1)
+X_new = X_new[:1] # Select only the first row (the user input data)
+
+X_new = X_new.drop(columns=['StudentType','AcademicYear', 'AcademicSemester','Sex','FacultyID','DepartmentCode','EntryTypeID','EntryGroupID','LevelID','StudentType','Status'])
+
 
 # -- Display pre-processed new data:
 st.subheader('Pre-Processed Input:')
-st.write(X)
+st.write(X_new)
 
 # -- Reads the saved normalization model
 load_nor = pickle.load(open('normalization.pkl', 'rb'))
 #Apply the normalization model to new data
-X = load_nor.transform(X)
+X_new = load_nor.transform(X_new)
 
 # -- Display normalized new data:
 st.subheader('Normalized Input:')
-st.write(X)
+st.write(X_new)
 
 # -- Reads the saved classification model
 load_knn = pickle.load(open('best_knn.pkl', 'rb'))
 # Apply model for prediction
-prediction = load_knn.predict(X)
+prediction = load_knn.predict(X_new)
 
 # -- Display predicted class:
 st.subheader('Prediction:')
